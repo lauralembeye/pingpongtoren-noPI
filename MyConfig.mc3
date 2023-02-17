@@ -1,4 +1,4 @@
-<config configName="default" projectName="Pingpongtoren-noPI-upgrade" configVersion="1.1" device="PIC16F18345" deviceLibraryClass="com.microchip.mcc.mcu8.Mcu8PeripheralLibrary" coreVersion="5.4.1">
+<config configName="default" projectName="Pingpongtoren-noPI-upgrade" configVersion="1.1" device="PIC16F18345" deviceLibraryClass="com.microchip.mcc.mcu8.Mcu8PeripheralLibrary" coreVersion="5.4.11">
    <usedPackages class="java.util.ArrayList"/>
    <usedClasses class="java.util.TreeMap">
       <entry>
@@ -5795,82 +5795,82 @@
          <value>OFF</value>
       </entry>
    </tokenMap>
-   <generatedFileHashHistoryMap class="java.util.HashMap">
-      <entry>
-         <file>mcc_generated_files\interrupt_manager.h</file>
-         <hash>a72a30820e49bd548de5407a524e897f44937a3077f0c6a62e6b58e27c69e799</hash>
-      </entry>
-      <entry>
-         <file>mcc_generated_files\mcc.h</file>
-         <hash>b1fb5d6a43d11469575d8ebc206c412cacae22c60ba2147c16e73e57cd1ae647</hash>
-      </entry>
-      <entry>
-         <file>mcc_generated_files\device_config.h</file>
-         <hash>77dff0db35b93559a2b00ae7bd1af49f56b2e91ee9529228c418ed257f31fc52</hash>
-      </entry>
-      <entry>
-         <file>mcc_generated_files\pwm5.h</file>
-         <hash>83fba138ef761382d455d71c35acbf9977fc619bf648487701a40df67d220f44</hash>
-      </entry>
-      <entry>
-         <file>mcc_generated_files\tmr0.h</file>
-         <hash>71cae8e6c77b41112f8f6dd9dcc6cf0a23aba4e646e92083a08489b787271196</hash>
-      </entry>
+   <generatedFileHashHistoryMap class="java.util.TreeMap">
       <entry>
          <file>main.c</file>
          <hash>656e7bfaa00a3c676e6a868610314e0c169a187062fb7fc79b5de766697a7094</hash>
-      </entry>
-      <entry>
-         <file>mcc_generated_files\device_config.c</file>
-         <hash>3883ae57d867ef5eca6bc2a81f58f7b77fb07934d8422e2b885f8249143392e5</hash>
-      </entry>
-      <entry>
-         <file>mcc_generated_files\tmr2.h</file>
-         <hash>878b4fcef1d3d3ee7b0f3682ee897f6119bfd60754f3b6ba95646444d7dea604</hash>
-      </entry>
-      <entry>
-         <file>mcc_generated_files\pin_manager.h</file>
-         <hash>0364e0e686ec1cb9f80772509b40271099ce7d485f514bd1a660d1a5e18e9391</hash>
-      </entry>
-      <entry>
-         <file>mcc_generated_files\tmr2.c</file>
-         <hash>39010032017daf6beb27f6eb4a6a909e2f1733d06750f8fde4d9732b5b105ba8</hash>
-      </entry>
-      <entry>
-         <file>mcc_generated_files\adc.h</file>
-         <hash>5f5ab25c2ea8d31d61d98629aea8568af6d47862aa3979a4da6c5d26fb1b75cb</hash>
-      </entry>
-      <entry>
-         <file>mcc_generated_files\eusart.c</file>
-         <hash>1253b9e0ced23f0f5e2ba6455b9e71b9e86af464282dc6a2e7a67aba0d7a21e6</hash>
-      </entry>
-      <entry>
-         <file>mcc_generated_files\tmr0.c</file>
-         <hash>f63a8d135a00c10338a3168473effa8f8c7849a1db80d4cd5998a69f7a32a091</hash>
-      </entry>
-      <entry>
-         <file>mcc_generated_files\pin_manager.c</file>
-         <hash>9c6879bf8d90ce9d099d2f6fab201779df913bbae264594595c6202c5322dafd</hash>
-      </entry>
-      <entry>
-         <file>mcc_generated_files\eusart.h</file>
-         <hash>68fecc465d6e285e5b414bb867205d35ad7206faff15a9b75d87b0055e5215e3</hash>
       </entry>
       <entry>
          <file>mcc_generated_files\adc.c</file>
          <hash>d645627df62f089b147abdb357444637c922c5ea69e61bd59fd8fdc014ca5890</hash>
       </entry>
       <entry>
+         <file>mcc_generated_files\adc.h</file>
+         <hash>5f5ab25c2ea8d31d61d98629aea8568af6d47862aa3979a4da6c5d26fb1b75cb</hash>
+      </entry>
+      <entry>
+         <file>mcc_generated_files\device_config.c</file>
+         <hash>3883ae57d867ef5eca6bc2a81f58f7b77fb07934d8422e2b885f8249143392e5</hash>
+      </entry>
+      <entry>
+         <file>mcc_generated_files\device_config.h</file>
+         <hash>77dff0db35b93559a2b00ae7bd1af49f56b2e91ee9529228c418ed257f31fc52</hash>
+      </entry>
+      <entry>
+         <file>mcc_generated_files\eusart.c</file>
+         <hash>1253b9e0ced23f0f5e2ba6455b9e71b9e86af464282dc6a2e7a67aba0d7a21e6</hash>
+      </entry>
+      <entry>
+         <file>mcc_generated_files\eusart.h</file>
+         <hash>68fecc465d6e285e5b414bb867205d35ad7206faff15a9b75d87b0055e5215e3</hash>
+      </entry>
+      <entry>
          <file>mcc_generated_files\interrupt_manager.c</file>
          <hash>d5e498064941bb0482d782fa2520d16f1461b34867813175f6d888931baac3f8</hash>
+      </entry>
+      <entry>
+         <file>mcc_generated_files\interrupt_manager.h</file>
+         <hash>a72a30820e49bd548de5407a524e897f44937a3077f0c6a62e6b58e27c69e799</hash>
       </entry>
       <entry>
          <file>mcc_generated_files\mcc.c</file>
          <hash>592c34d1fc3645a22c413481d374e507b11df909e6e8f905b325f08f72bac8a2</hash>
       </entry>
       <entry>
+         <file>mcc_generated_files\mcc.h</file>
+         <hash>b1fb5d6a43d11469575d8ebc206c412cacae22c60ba2147c16e73e57cd1ae647</hash>
+      </entry>
+      <entry>
+         <file>mcc_generated_files\pin_manager.c</file>
+         <hash>9c6879bf8d90ce9d099d2f6fab201779df913bbae264594595c6202c5322dafd</hash>
+      </entry>
+      <entry>
+         <file>mcc_generated_files\pin_manager.h</file>
+         <hash>0364e0e686ec1cb9f80772509b40271099ce7d485f514bd1a660d1a5e18e9391</hash>
+      </entry>
+      <entry>
          <file>mcc_generated_files\pwm5.c</file>
          <hash>547930343ef31b82291d36edb1fa666b4098c7de419cbc2ef41209d7a6b8adfa</hash>
+      </entry>
+      <entry>
+         <file>mcc_generated_files\pwm5.h</file>
+         <hash>83fba138ef761382d455d71c35acbf9977fc619bf648487701a40df67d220f44</hash>
+      </entry>
+      <entry>
+         <file>mcc_generated_files\tmr0.c</file>
+         <hash>f63a8d135a00c10338a3168473effa8f8c7849a1db80d4cd5998a69f7a32a091</hash>
+      </entry>
+      <entry>
+         <file>mcc_generated_files\tmr0.h</file>
+         <hash>71cae8e6c77b41112f8f6dd9dcc6cf0a23aba4e646e92083a08489b787271196</hash>
+      </entry>
+      <entry>
+         <file>mcc_generated_files\tmr2.c</file>
+         <hash>39010032017daf6beb27f6eb4a6a909e2f1733d06750f8fde4d9732b5b105ba8</hash>
+      </entry>
+      <entry>
+         <file>mcc_generated_files\tmr2.h</file>
+         <hash>878b4fcef1d3d3ee7b0f3682ee897f6119bfd60754f3b6ba95646444d7dea604</hash>
       </entry>
    </generatedFileHashHistoryMap>
 </config>
