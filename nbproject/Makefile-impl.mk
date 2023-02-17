@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=Pingpongtoren-noPI.X
+PROJECTNAME=pingpongtoren-noPI
 
 # Active Configuration
 DEFAULTCONF=default
