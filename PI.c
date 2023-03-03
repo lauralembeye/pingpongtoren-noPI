@@ -60,8 +60,8 @@ void PI(void) {
     if (dutycycle < 0){
         dutycycle = 0;        
     }
-    else if (dutycycle > 255){
-        dutycycle = 255;
+    else if (dutycycle > 1023){
+        dutycycle = 1023;
     }
             
 

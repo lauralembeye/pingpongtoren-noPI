@@ -13,7 +13,7 @@
   Section: UART Module APIs
  */
 
-bool mustPrintLogs = true;
+bool mustPrintLogs = false;
 
 #define EUART_READ_LINE_BUFFER_LENGTH 20
 char line[EUART_READ_LINE_BUFFER_LENGTH];

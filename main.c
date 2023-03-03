@@ -15,6 +15,7 @@
 #include <stdint.h>
 #include "PI.h"
 #include "UART.h"
+#include "blok2binair.h"
 
 /*
                          Main application
@@ -39,7 +40,7 @@ void main(void) {
     //INTERRUPT_PeripheralInterruptDisable();
 
     // Initialiseer de hoogtemeting
-    ADC_SelectChannel(Hoogtesensor);
+    //ADC_SelectChannel(Hoogtesensor);
     ADC_StartConversion();
     TMR2_Initialize();
     TMR2_StartTimer();
@@ -47,20 +48,20 @@ void main(void) {
     printf("Hello :) \r\n");
 
     while (1) {
-
-        uartHandler();
+        loop();
+        //uartHandler();
         
         // PI moet op een vaste frequentie (elke 33ms) lopen voor de integrator
-        if (TMR0_HasOverflowOccured()) {
-            TMR0_Initialize();
-
-            PI();
-            static uint8_t printCycle = 0; //door static toe te voegen wordt "printCycle" niet elke keer her geinitialiseerd maar behoudt het zijn vorige waarde
-            if (printCycle++ > 30) {
-                printLogs();
-                printCycle = 0;
-            }
-        }
+//        if (TMR0_HasOverflowOccured()) {
+//            TMR0_Initialize();
+//
+//            PI();
+//            static uint8_t printCycle = 0; //door static toe te voegen wordt "printCycle" niet elke keer her geinitialiseerd maar behoudt het zijn vorige waarde
+//            if (printCycle++ > 30) {
+//                printLogs();
+//                printCycle = 0;
+//            }
+//        }
     }
 }
 
