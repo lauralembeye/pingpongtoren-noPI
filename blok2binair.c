@@ -11,7 +11,7 @@ for more tutorials!
 
 
 // the maximum pulse we'll listen for - 65 milliseconds is a long time
-#define MAXPULSE 65000
+#define MAXPULSE 1000//65000
  
 // what our timing resolution should be, larger is better
 // as its more 'precise' - but too large and you wont get
@@ -25,27 +25,27 @@ uint16_t averageLow = 0;
 uint16_t averageHigh = 0;
 
 void printpulses(void) {
-  printf("\n\r\n\rReceived: \n\rOFF \tON");
+  printf("\n\r\n\rReceived: \n\rOFF \tON\n\r");
   uint8_t i;
-  for ( i = 0; i < currentpulse; i++) {
+  //for ( i = 0; i < currentpulse; i++) {
     
-    printf("%d",pulses[i][0] * RESOLUTION);
-    printf(" usec, ");
-    averageHigh +=pulses[i][0] *RESOLUTION;
+    //printf("%d",pulses[i][0] * RESOLUTION);
+    //printf(" usec, ");
+    //averageHigh +=pulses[i][0] *RESOLUTION;
     
-    printf("%d",pulses[i][1] * RESOLUTION);
-    printf(" usec");
-    averageLow +=pulses[i][1] * RESOLUTION;
-  }
-   printf("Number of Pulses: ");
-   printf(currentpulse);
-   printf("Print average of Low Pulses: ");
-   printf(averageLow/currentpulse);// print the average
-   printf("Print average of High Pulses: ");
-   printf(averageHigh/currentpulse);// print the average
+   // printf("%d",pulses[i][1] * RESOLUTION);
+    //printf(" usec");
+   // averageLow +=pulses[i][1] * RESOLUTION;
+  //}
+   //printf("Number of Pulses: ");
+  // printf(currentpulse);
+  // printf("Print average of Low Pulses: ");
+  // printf(averageLow/currentpulse);// print the average
+  // printf("Print average of High Pulses: ");
+  // printf(averageHigh/currentpulse);// print the average
   // print it in a 'array' format
-  printf("int IRsignal[] = {");
-  printf("// ON, OFF (in 10's of microseconds)");
+  //printf("int IRsignal[] = {");
+ // printf("// ON, OFF (in 10's of microseconds)");
   for (i = 0; i < currentpulse-1; i++) {
     printf("\t"); // tab
     printf("%d",pulses[i][1] * RESOLUTION / 10);
@@ -57,7 +57,29 @@ void printpulses(void) {
   printf("%d",pulses[currentpulse-1][1] * RESOLUTION / 10);
   printf(", 0};");
   
- }
+  }
+  
+
+void blok2binair(void){
+    uint32_t getal=0;
+    for (int i = 2; i < currentpulse-1; i++){
+        //printf("%d \r\n", pulses[i][0]* RESOLUTION / 10);
+        getal=getal*10;
+        if (pulses[i][0]* RESOLUTION / 10 >= 100){
+            //printf("1");
+            getal+=1;
+        }
+        else{
+            //printf("0");
+        }
+        
+                
+    }
+    printf("\r\n mijn getal %x \n",getal);
+    return;
+}
+
+
 
 void loop(void) {
   uint16_t highpulse, lowpulse; // temporary storage timing
@@ -78,20 +100,24 @@ void loop(void) {
      // was received or the code is finished, so print what
      // we've grabbed so far, and then reset
      if ((highpulse >= MAXPULSE) && (currentpulse != 0)) {
-      printf(highpulse);
+      /*printf(highpulse);
       printf("\r\n");
       printf(currentpulse);
       printf("\r\n");
       printf(MAXPULSE);
-      printf("\r\n");
+      printf("\r\n");*/
        printpulses();
+       printf("HIGH\r\n");
+       printf("%d",currentpulse);
+       printf("\r\n");
+       blok2binair();
        currentpulse=0;
        return;
      }
   }
   // we didn't time out so lets stash the reading
   pulses[currentpulse][0] = highpulse;
-  
+  //printf("%d \r\n",highpulse);
   // same as above
   while (! out_GetValue()) {
   //while (!IRpin_PIN & (1<<IRpin)){
@@ -100,6 +126,10 @@ void loop(void) {
      //delayMicroseconds(RESOLUTION);
      if ((lowpulse >= MAXPULSE) && (currentpulse != 0)) {
        printpulses();
+       printf("LOW\r\n");
+       printf("%d",currentpulse);
+       printf("\r\n");
+       blok2binair();
        currentpulse=0;
        return;
      }
@@ -109,3 +139,4 @@ void loop(void) {
   // we read one high-low pulse successfully, continue!
   currentpulse++;
 }
+
