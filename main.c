@@ -45,7 +45,7 @@ void main(void) {
     TMR2_Initialize();
     TMR2_StartTimer();
     
-    //printf("Hello :) \r\n");
+    printf("Hello :) \r\n");
 
     while (1) {
         loop();

@@ -1,26 +1,24 @@
 /**
-  Generated Pin Manager File
+  TMR6 Generated Driver File
 
-  Company:
+  @Company
     Microchip Technology Inc.
 
-  File Name:
-    pin_manager.c
+  @File Name
+    tmr6.c
 
-  Summary:
-    This is the Pin Manager file generated using PIC10 / PIC12 / PIC16 / PIC18 MCUs
+  @Summary
+    This is the generated driver implementation file for the TMR6 driver using PIC10 / PIC12 / PIC16 / PIC18 MCUs
 
-  Description:
-    This header file provides implementations for pin APIs for all pins selected in the GUI.
+  @Description
+    This source file provides APIs for TMR6.
     Generation Information :
         Product Revision  :  PIC10 / PIC12 / PIC16 / PIC18 MCUs - 1.81.7
         Device            :  PIC16F18345
-        Driver Version    :  2.11
+        Driver Version    :  2.01
     The generated drivers are tested against the following:
         Compiler          :  XC8 2.31 and above
-        MPLAB             :  MPLAB X 5.45
-
-    Copyright (c) 2013 - 2015 released Microchip Technology Inc.  All rights reserved.
+        MPLAB 	          :  MPLAB X 5.45
 */
 
 /*
@@ -46,80 +44,81 @@
     SOFTWARE.
 */
 
-#include "pin_manager.h"
+/**
+  Section: Included Files
+*/
 
-
-
-
-
-void PIN_MANAGER_Initialize(void)
-{
-    /**
-    LATx registers
-    */
-    LATA = 0x00;
-    LATB = 0x00;
-    LATC = 0x00;
-
-    /**
-    TRISx registers
-    */
-    TRISA = 0x17;
-    TRISB = 0x30;
-    TRISC = 0x7D;
-
-    /**
-    ANSELx registers
-    */
-    ANSELC = 0x69;
-    ANSELB = 0x10;
-    ANSELA = 0x13;
-
-    /**
-    WPUx registers
-    */
-    WPUB = 0x00;
-    WPUA = 0x00;
-    WPUC = 0x00;
-
-    /**
-    ODx registers
-    */
-    ODCONA = 0x00;
-    ODCONB = 0x00;
-    ODCONC = 0x00;
-
-    /**
-    SLRCONx registers
-    */
-    SLRCONA = 0x37;
-    SLRCONB = 0xF0;
-    SLRCONC = 0xFF;
-
-    /**
-    INLVLx registers
-    */
-    INLVLA = 0x3F;
-    INLVLB = 0xF0;
-    INLVLC = 0xFF;
-
-
-
-
-
-   
-    
-	
-    INTPPS = 0x02;   //RA2->EXT_INT:INT;    
-    RXPPS = 0x0D;   //RB5->EUSART:RX;    
-    RB7PPS = 0x14;   //RB7->EUSART:TX;    
-    RC1PPS = 0x02;   //RC1->PWM5:PWM5;    
-}
-  
-void PIN_MANAGER_IOC(void)
-{   
-}
+#include <xc.h>
+#include "tmr6.h"
 
 /**
- End of File
+  Section: Global Variables Definitions
+*/
+
+/**
+  Section: TMR6 APIs
+*/
+
+void TMR6_Initialize(void)
+{
+    // Set TMR6 to the options selected in the User Interface
+
+    // PR6 124; 
+    PR6 = 0x7C;
+
+    // TMR6 0; 
+    TMR6 = 0x00;
+
+    // Clearing IF flag.
+    PIR2bits.TMR6IF = 0;
+
+    // T6CKPS 1:64; T6OUTPS 1:1; TMR6ON on; 
+    T6CON = 0x07;
+}
+
+void TMR6_StartTimer(void)
+{
+    // Start the Timer by writing to TMRxON bit
+    T6CONbits.TMR6ON = 1;
+}
+
+void TMR6_StopTimer(void)
+{
+    // Stop the Timer by writing to TMRxON bit
+    T6CONbits.TMR6ON = 0;
+}
+
+uint8_t TMR6_ReadTimer(void)
+{
+    uint8_t readVal;
+
+    readVal = TMR6;
+
+    return readVal;
+}
+
+void TMR6_WriteTimer(uint8_t timerVal)
+{
+    // Write to the Timer6 register
+    TMR6 = timerVal;
+}
+
+void TMR6_LoadPeriodRegister(uint8_t periodVal)
+{
+   PR6 = periodVal;
+}
+
+bool TMR6_HasOverflowOccured(void)
+{
+    // check if  overflow has occurred by checking the TMRIF bit
+    bool status = PIR2bits.TMR6IF;
+    if(status)
+    {
+        // Clearing IF flag.
+        PIR2bits.TMR6IF = 0;
+    }
+    return status;
+}
+/**
+  End of File
 */
