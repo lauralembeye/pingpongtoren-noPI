@@ -8,7 +8,7 @@ Code is public domain, check out www.ladyada.net and adafruit.com
 for more tutorials!
 */
  #include "mcc_generated_files/mcc.h"
-
+#define TIMER_1MS 4000
 
 // the maximum pulse we'll listen for - 65 milliseconds is a long time
 #define MAXPULSE 200//65000
@@ -48,7 +48,7 @@ void printpulses(void) {
   // print it in a 'array' format
   //printf("int IRsignal[] = {");
  // printf("// ON, OFF (in 10's of microseconds)");
-  for (i = 0; i < currentpulse-1; i++) {
+  /*for (i = 0; i < currentpulse-1; i++) {
     printf("\t"); // tab
     printf("%d",pulses[i][1] * RESOLUTION / 10);
     printf(", ");
@@ -58,22 +58,22 @@ void printpulses(void) {
   printf("\t"); // tab
   printf("%d",pulses[currentpulse-1][1] * RESOLUTION / 10);
   printf(", 0};");
-  
+  */
   }
   
 
 void blok2binair(void){
     uint32_t getal=0;
-    for (int i = 2; i < currentpulse-1; i++){
+    for (int i = 0; i < currentpulse-1; i++){
         //printf("%d \r\n", pulses[i][0]* RESOLUTION / 10);
-        getal=getal<<1;
        //if (pulses[i][0]* RESOLUTION / 10 >= 100){
-        if (pulses[i][0] ){
+        if (pulses[i][0]==true){
             //printf("1");
-            getal+=1;
+            getal=(getal<<1)+1;
         }
         else{
             //printf("0");
+            getal=(getal<<1);
         }
         
                 
@@ -87,8 +87,8 @@ void blok2binair(void){
 void loop(void) {
   uint16_t highpulse, lowpulse; // temporary storage timing
   //highpulse = lowpulse = 0; // start out with no pulse length
-  TMR6_Initialize();
-  
+  TMR1_Initialize();
+//  printf("a");
 // while (digitalRead(IRpin)) { // this is too slow!
     while (out_GetValue()) {
      // pin is still HIGH
@@ -96,13 +96,13 @@ void loop(void) {
      // count off another few microseconds
      //highpulse++;
      
-     __delay_us(RESOLUTION);
+     //__delay_us(RESOLUTION);
 
     
      // If the pulse is too long, we 'timed out' - either nothing
      // was received or the code is finished, so print what
      // we've grabbed so far, and then reset
-     if ((TMR6_ReadTimer() >= MAXPULSE) && (currentpulse != 0)) {
+     if (TMR1_HasOverflowOccured() && (currentpulse != 0)) {
       /*printf(highpulse);
       printf("\r\n");
       printf(currentpulse);
@@ -119,8 +119,8 @@ void loop(void) {
      }
   }
   // we didn't time out so lets stash the reading
-  pulses[currentpulse][0] = TMR6_HasOverflowOccured();
-  TMR6_Initialize();
+  pulses[currentpulse][0] = TMR1_ReadTimer()>TIMER_1MS;
+  TMR1_Initialize();
   //printf("%d \r\n",highpulse);
   // same as above
   while (! out_GetValue()) {
@@ -128,7 +128,7 @@ void loop(void) {
      // pin is still LOW
      //lowpulse++;
      //delayMicroseconds(RESOLUTION);
-     if ((TMR6_ReadTimer() >= MAXPULSE) && (currentpulse != 0)) {
+     if (TMR1_HasOverflowOccured() && (currentpulse != 0)) {
        printpulses();
        printf("LOW\r\n");
        printf("%d",currentpulse);
@@ -138,7 +138,7 @@ void loop(void) {
        return;
      }
   }
-  pulses[currentpulse][1] =TMR6_HasOverflowOccured();
+  pulses[currentpulse][1] =TMR1_ReadTimer()>TIMER_1MS;
  
   // we read one high-low pulse successfully, continue!
   currentpulse++;
