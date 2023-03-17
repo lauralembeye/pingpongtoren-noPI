@@ -13,9 +13,9 @@
 static uint8_t sensorHeight = 0;
 static uint8_t setpoint = 125; 
 static int error = 0;
-static float integral = 0;
+static int32_t integral = 0;
 static float ki = 0.008;
-static float kp = 5;
+static uint8_t kp = 5;
 static int dutycycle;
 
 uint8_t PI_GetSensorHeight(void) {
@@ -55,7 +55,8 @@ void PI(void) {
     error = setpoint - sensorHeight;
    
     integral += error;
-    dutycycle = kp*error + ki*integral;
+    dutycycle = kp*error + integral*8/1000;
+//    dutycycle = kp*error + ki*integral;
     
     if (dutycycle < 0){
         dutycycle = 0;        

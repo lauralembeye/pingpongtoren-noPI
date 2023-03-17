@@ -95,6 +95,7 @@ typedef struct
 typedef enum
 {
     Potentiometer =  0x10,
+    Hoogtesensor =  0x12,
     channel_AVSS =  0x3C,
     channel_Temp =  0x3D,
     channel_DAC1 =  0x3E,
