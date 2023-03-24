@@ -23,6 +23,7 @@ bool pulses[100][2]; // pair is high and low pulse
 uint8_t currentpulse = 0; // index for pulses we're storing
 uint16_t averageLow = 0;
 uint16_t averageHigh = 0;
+uint32_t getal = 0;
 
 void printpulses(void) {
     printf("\n\r\n\rReceived: \n\rOFF \tON\n\r");
@@ -54,13 +55,14 @@ void printpulses(void) {
       printf(",\r\n");
     }
     printf("\t"); // tab
-    printf("%d",pulses[currentpulse-1][1] * RESOLUTION / 10);
+    printf("%d",pulses[currentpulse-1][1
+     *  * RESOLUTION / 10);
     printf(", 0};");
      */
 }
 
 void blok2binair(void) {
-    uint32_t getal = 0;
+    getal = 0;
     for (int i = 0; i < currentpulse - 1; i++) {
         //printf("%d \r\n", pulses[i][0]* RESOLUTION / 10);
         //if (pulses[i][0]* RESOLUTION / 10 >= 100){
@@ -75,6 +77,13 @@ void blok2binair(void) {
     }
     printf("\r\n mijn getal %u \n", getal);
     return;
+}
+
+uint32_t get_getal(void){
+    return getal;
+}
+void set_getal(void){
+    getal = 0;
 }
 
 void loop(void) {

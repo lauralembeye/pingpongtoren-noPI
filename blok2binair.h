@@ -70,6 +70,9 @@ extern "C" {
     // TODO If C++ is being used, regular C code needs function names to have C 
     // linkage so the functions can be used by the c code. 
     void loop(void);
+    void blok2binair(void);
+    uint32_t get_getal(void);
+    void set_getal(void);
 
 #ifdef	__cplusplus
 }

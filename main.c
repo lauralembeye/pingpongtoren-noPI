@@ -46,7 +46,7 @@ void main(void) {
     TMR2_StartTimer();
     
     
-    printf("Hello :) \r\n");
+    //printf("Hello :) \r\n");
 
     while (1) {
         loop();
@@ -62,6 +62,23 @@ void main(void) {
                 printLogs();
                 printCycle = 0;
             }
+        }
+        if(get_getal()== 0x807F8877){
+            int x = (int)PI_GetSetPoint() + 5;
+            if(x>=255){
+                x = 255;
+            }
+            PI_SetSetpoint((uint8_t)x);
+            set_getal();
+            //printf("%u \n",PI_GetSetPoint());
+        }
+        if(get_getal()== 0x807F9867){
+            int x = PI_GetSetPoint() - 5;
+            if(x<=0){
+                x = 0;
+            }
+            PI_SetSetpoint((uint8_t)x);
+            set_getal();
         }
     }
 }
