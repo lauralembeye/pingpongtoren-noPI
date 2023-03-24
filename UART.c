@@ -86,7 +86,7 @@ float str2float(char *str) {
             getal += cijfer - '0';
             kommaCounter++;
         } else if (cijfer == ',' || cijfer == '.') {
-            kommaPresent = true;
+            kommaPresent = false;
             kommaCounter = 0;
         } else {
             break;

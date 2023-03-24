@@ -33,8 +33,8 @@ enum count {
 };
 enum count direction = UP;
 char led_run = 0;
-static uint8_t hoogte_bal = 0;
-#define NumberOfLEDs  58
+int hoogte_bal = 0;
+#define NumberOfLEDs  57
 int teller = 0;
 char flag = 0;
 
@@ -68,10 +68,11 @@ void Send_LED_EndFrame() {
 }
 
 void check_balhoogte(void){
-           if (hoogte_bal-5<= led_run && led_run <=hoogte_bal+5){
+   
+           if ((hoogte_bal -1<= led_run) && (led_run<= hoogte_bal+1)){
                teller=teller+1;
                led_run = rand()%NumberOfLEDs; 
-               printf("%u", led_run);
+               printf("hello, %u", led_run);
                //printf("%u", led_run);
            }
            /*if (hoogte_bal==led_run){
@@ -119,9 +120,10 @@ void main(void) {
     
     
     //printf("Hello :) \r\n");
-    hoogte_bal = PI_GetSensorHeight()/3.36;
+    
     printf("%u" ,GetHoogte_bal());
     while (1) {
+        hoogte_bal = PI_GetSensorHeight()/4.47;
         loop();
         uartHandler();
         
@@ -151,6 +153,10 @@ void main(void) {
                 x = 0;
             }
             PI_SetSetpoint((uint8_t)x);
+            set_getal();
+        }
+        if(get_getal()== 0x807ff00f){
+            led_run = rand()%NumberOfLEDs;
             set_getal();
         }
         //kleurverandering
