@@ -14,7 +14,7 @@ static uint8_t sensorHeight = 0;
 static uint8_t setpoint = 125; 
 static int error = 0;
 static int32_t integral = 0;
-static float ki = 0.008;
+//static float ki = 0.008;
 static uint8_t kp = 5;
 static int dutycycle;
 
@@ -41,12 +41,12 @@ float PI_GetKp(void) {
     return kp;
 }
 
-void PI_SetKi(float value) {
-    ki = value;
-}
-float PI_GetKi(void) {
-    return ki;
-}
+//void PI_SetKi(float value) {
+//    ki = value;
+//}
+//float PI_GetKi(void) {
+//    return ki;
+//}
 
 void PI(void) {
     sensorHeight = (uint8_t) (ADC_GetConversionResult() >> 2); //resultaat van ADC (8 bit )

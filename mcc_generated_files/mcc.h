@@ -53,6 +53,8 @@
 #include <stdbool.h>
 #include <conio.h>
 #include "interrupt_manager.h"
+#include "spi1.h"
+#include "tmr3.h"
 #include "tmr1.h"
 #include "tmr2.h"
 #include "pwm5.h"
@@ -60,6 +62,7 @@
 #include "ext_int.h"
 #include "adc.h"
 #include "eusart.h"
+#include "drivers/spi_master.h"
 
 
 

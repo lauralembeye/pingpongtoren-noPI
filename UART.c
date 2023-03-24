@@ -13,7 +13,7 @@
   Section: UART Module APIs
  */
 
-bool mustPrintLogs = false;
+bool mustPrintLogs = true;
 
 #define EUART_READ_LINE_BUFFER_LENGTH 20
 char line[EUART_READ_LINE_BUFFER_LENGTH];
@@ -40,7 +40,7 @@ char* readLine() {
             while (EUSART_is_rx_ready()) {
                 EUSART_Read();
             }
-            printf("input buffer overflow");
+            printf("overflow");
             printNewLine();
             index = 0;
             line[index ] = 0;
@@ -136,16 +136,16 @@ void printFloat(float value) {
 void printLogs() {
     //Write to com port
     if (mustPrintLogs) {
-        printf("hoogte: ");
+        printf("h: ");
         printUint32(PI_GetSensorHeight(), 3); //print sensorheight als geheel getal van 3 cijfers
-        printf(", setPoint: ");
+        printf(", setP: ");
         printUint32(PI_GetSetPoint(), 3); 
-        printf(", duty cycle: ");
-        printUint32((uint16_t) PI_GetDutycycle(), 3); 
-        printf(", ki: ");
-        printFloat(PI_GetKi()); //print ki als komma getal (5 cijfers na de komma)
-        printf(", kp: ");
-        printFloat(PI_GetKp()); 
+        printf(", dc: ");
+        printUint32((uint16_t) PI_GetDutycycle(), 3);
+//        printf(", ki: ");
+//        printFloat(PI_GetKi()); //print ki als komma getal (5 cijfers na de komma)
+//        printf(", kp: ");
+//        printFloat(PI_GetKp()); 
         printNewLine();
     }
 }
@@ -155,35 +155,35 @@ void uartHandler(void) {
     switch (*str) {//empty string
         case 0:
             break;
-        case 'S': //Setpoint                            
-        case 's':
-            PI_SetSetpoint(str2uint8(str+1));
-            printf("setpoint ");
-            printUint32(PI_GetSetPoint(), 0);
-            printNewLine();
-            break;
-        case 'P': //Proportional                           
-        case 'p':
-            PI_SetKp(str2float(str + 1));
-            printf("Kp ");
-            printFloat(PI_GetKp());
-            printNewLine();
-            break;
-        case 'I': //Integrate                                           
-        case 'i':
-            PI_SetKi(str2float(str + 1));
-            printf("Ki ");
-            printFloat(PI_GetKi());
-            printNewLine();
-            break;
-        case 'L': //logs                                        
-        case 'l':
-            mustPrintLogs = !mustPrintLogs;
-            printf("logs toggled");
-            printNewLine();
-            break;
+//        case 'S': //Setpoint                            
+//        case 's':
+//            PI_SetSetpoint(str2uint8(str+1));
+//            printf("set");
+//            printUint32(PI_GetSetPoint(), 0);
+//            printNewLine();
+//            break;
+//        case 'P': //Proportional                           
+//        case 'p':
+//            PI_SetKp(str2float(str + 1));
+//            printf("Kp ");
+//            printFloat(PI_GetKp());
+//            printNewLine();
+//            break;
+//        case 'I': //Integrate                                           
+//        case 'i':
+//            PI_SetKi(str2float(str + 1));
+//            printf("Ki ");
+//            printFloat(PI_GetKi());
+//            printNewLine();
+//            break;
+//        case 'L': //logs                                        
+//        case 'l':
+//            mustPrintLogs = !mustPrintLogs;
+////            printf("logs toggled");
+//            printNewLine();
+//            break;
         default:
-            printf("Command not supported. ");
+//            printf("not supported. ");
             printStr(str);
     };
 }

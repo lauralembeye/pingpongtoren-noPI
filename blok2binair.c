@@ -75,7 +75,7 @@ void blok2binair(void) {
         }
 
     }
-    printf("\r\n mijn getal %u \n", getal);
+    printf("\r\n mijn getal %lx \n", getal);
     return;
 }
 
